@@ -167,7 +167,10 @@ return [
          * Package Service Providers...
          */
 
-        //
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        Dingo\Api\Provider\LaravelServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
 
         /*
          * Application Service Providers...
