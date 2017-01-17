@@ -14,6 +14,18 @@ return [
     |
     */
 
+    'facebook' => [
+        'client_id' => env('OAUTH_FACEBOOK_ID', ''),
+        'client_secret' => env('OAUTH_FACEBOOK_SECRET', ''),
+        'redirect' => env('OAUTH_FACEBOOK_REDIRECT', ''),
+    ],
+
+    'google' => [
+        'client_id' => env('OAUTH_GOOGLE_ID', ''),
+        'client_secret' => env('OAUTH_GOOGLE_SECRET', ''),
+        'redirect' => env('OAUTH_GOOGLE_REDIRECT', ''),
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
@@ -30,7 +42,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => App\User::class,
+        'model' => App\Entities\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

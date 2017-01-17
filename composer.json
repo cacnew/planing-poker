@@ -7,9 +7,8 @@
     "require": {
         "php": ">=5.6.4",
         "barryvdh/laravel-cors": "^0.8.2",
-        "dingo/api": "1.0.x@dev",
         "laravel/framework": "5.3.*",
-        "laravel/passport": "^1.0",
+        "laravel/socialite": "^2.0",
         "league/fractal": "^0.14.0",
         "prettus/l5-repository": "^2.6"
     },
@@ -47,6 +46,8 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan ide-helper:generate",
+            "php artisan ide-helper:meta",
             "php artisan optimize"
         ]
     },

@@ -81,6 +81,9 @@
                 <div class="title m-b-md">
                     Laravel
                 </div>
+                <a class="btn btn-info" href="auth/google" role="button">Loging com google</a>
+                <br>
+                <a class="btn btn-info" href="auth/facebook" role="button">Loging com facebook</a>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
