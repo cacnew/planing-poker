@@ -15,5 +15,5 @@ Route::get('/', function () {return view('welcome');});
 Route::get('home', array('as' => 'home', 'uses' => function(){
     return view('home');
 }));
-Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
-Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
+Route::get('auth/{provider}', 'Auth\SocialAuthController@redirectToProvider');
+Route::get('auth/{provider}/callback', ['as' => 'authProviderCallback', 'uses' => 'Auth\SocialAuthController@handleProviderCallback']);

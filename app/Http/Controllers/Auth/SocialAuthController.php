@@ -7,7 +7,7 @@ use App\Services\UserService;
 use Auth;
 use Socialite;
 
-class AuthController
+class SocialAuthController
 {
     protected $redirectPath = '/home';
 
