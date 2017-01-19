@@ -33,4 +33,9 @@ class User extends BaseEntity implements
     protected $hidden = [
         'remember_token',
     ];
+
+    public function estimates()
+    {
+        return $this->hasMany(Estimate::class);
+    }
 }

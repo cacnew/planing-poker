@@ -22,7 +22,7 @@ class SocialAuthTest extends TestCase
 
         Socialite::shouldReceive('driver')->with('facebook')->andReturn($provider);
 
-        $this->visit(route('authProviderCallback', ['facebook']))
+        $this->visit(route('auth.provider.callback', ['facebook']))
             ->seePageIs(route("home"));
     }
 
@@ -40,7 +40,7 @@ class SocialAuthTest extends TestCase
 
         Socialite::shouldReceive('driver')->with('google')->andReturn($provider);
 
-        $this->visit(route('authProviderCallback', ['google']))
+        $this->visit(route('auth.provider.callback', ['google']))
             ->seePageIs(route("home"));
     }
 }

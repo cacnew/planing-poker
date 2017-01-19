@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2017-01-16.
+    * Generated on 2017-01-19.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -40,6 +40,7 @@ namespace PHPSTORM_META {
             'view' instanceof \Illuminate\View\Factory,
             'App\Repositories\UserRepository' instanceof \App\Repositories\UserRepositoryEloquent,
             'Barryvdh\Cors\Stack\CorsService' instanceof \Barryvdh\Cors\Stack\CorsService,
+            'App\Services\UserService' instanceof \App\Services\BaseUserService,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
@@ -157,6 +158,7 @@ namespace PHPSTORM_META {
             'view' instanceof \Illuminate\View\Factory,
             'App\Repositories\UserRepository' instanceof \App\Repositories\UserRepositoryEloquent,
             'Barryvdh\Cors\Stack\CorsService' instanceof \Barryvdh\Cors\Stack\CorsService,
+            'App\Services\UserService' instanceof \App\Services\BaseUserService,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
@@ -274,6 +276,7 @@ namespace PHPSTORM_META {
             'view' instanceof \Illuminate\View\Factory,
             'App\Repositories\UserRepository' instanceof \App\Repositories\UserRepositoryEloquent,
             'Barryvdh\Cors\Stack\CorsService' instanceof \Barryvdh\Cors\Stack\CorsService,
+            'App\Services\UserService' instanceof \App\Services\BaseUserService,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
@@ -391,6 +394,7 @@ namespace PHPSTORM_META {
             'view' instanceof \Illuminate\View\Factory,
             'App\Repositories\UserRepository' instanceof \App\Repositories\UserRepositoryEloquent,
             'Barryvdh\Cors\Stack\CorsService' instanceof \Barryvdh\Cors\Stack\CorsService,
+            'App\Services\UserService' instanceof \App\Services\BaseUserService,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
