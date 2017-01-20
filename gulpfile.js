@@ -49,6 +49,11 @@ config.build_path_html = config.build_path +'/views';
 
 // font
 config.build_path_fonts = config.build_path +'/fonts';
+config.build_vendor_path_fonts = config.build_path_fonts + '/vendor';
+config.vendor_path_fonts = [
+    config.bower_path + '/bootstrap/fonts/*',
+    config.bower_path + '/font-awesome/fonts/*',
+];
 
 // images
 config.build_path_images = config.build_path +'/images';
@@ -59,6 +64,10 @@ gulp.task('copy-fonts', function(){
         config.assets_path + '/fonts/**/*'
     ])
         .pipe(gulp.dest(config.build_path_fonts))
+        .pipe(liveReload());
+
+    gulp.src(config.vendor_path_fonts)
+        .pipe(gulp.dest(config.build_vendor_path_fonts))
         .pipe(liveReload());
 });
 
