@@ -6,24 +6,21 @@ abstract class EntityAPITest extends TestCase
 {
     use DatabaseTransactions;
 
-    protected $entityData;
     protected $uri;
-    private $testKey;
-
-
-    protected function setUp()
-    {
-        parent::setUp();
-        $this->testKey = array_keys($this->entityData)[0];
-    }
+    protected $entity;
 
     public function testCriarEntity()
     {
-        $this->post($this->uri, $this->entityData);
-
-        $this->seeJsonContains([
-                $this->testKey => $this->entityData[$this->testKey],
-            ]);
+        $data = $this->getEntityData();
+        $this->post($this->uri, $data);
+        for($i = 0; $i < count($data); $i++) {
+            $key = array_keys($data)[$i];
+            if (!is_object($data[$key])) {
+                $this->seeJsonContains([
+                    $key => $data[$key],
+                ]);
+            }
+        }
     }
 
     public function testListarEntity()
@@ -35,18 +32,25 @@ abstract class EntityAPITest extends TestCase
 
     public function testRecuperarEntity()
     {
-        $entity = $this->createEntity($this->entityData);
+        $data = $this->getEntityData();
+        $entity = $this->createEntity($data);
 
         $this->get($this->uri.$entity->id);
 
-        $this->seeJsonContains([
-                $this->testKey => $this->entityData[$this->testKey],
-            ]);
+        for($i = 0; $i < count($data); $i++) {
+            $key = array_keys($data)[$i];
+            if (!is_object($data[$key])) {
+                $this->seeJsonContains([
+                    $key => $data[$key],
+                ]);
+            }
+        }
     }
 
     public function testApagarEntity()
     {
-        $entity = $this->createEntity($this->entityData);
+        $data = $this->getEntityData();
+        $entity = $this->createEntity($data);
 
         $this->delete($this->uri.$entity->id);
 
@@ -57,21 +61,28 @@ abstract class EntityAPITest extends TestCase
 
     public function testEditarEntity()
     {
-        $entity = $this->createEntity($this->entityData);
+        $data = $this->getEntityData();
+        $entity = $this->createEntity($data);
 
-        $data = [
-            $this->testKey => $this->entityData[$this->testKey].'_MODIFICADO',
-        ];
+        $dataModified = $this->getEntityData();
 
-        $this->put($this->uri.$entity->id, $data);
+        $this->put($this->uri.$entity->id, $dataModified);
 
-        $this->seeJsonContains([
-                $this->testKey => $this->entityData[$this->testKey].'_MODIFICADO',
-            ]);
+        for($i = 0; $i < count($data); $i++) {
+            $key = array_keys($data)[$i];
+            if (!is_object($data[$key])) {
+                $this->seeJsonContains([
+                    $key => $dataModified[$key],
+                ]);
+            }
+        }
     }
 
     private function createEntity($data) {
-        return json_decode($this->call('POST', $this->uri, $data)->getContent())->data;;
+        return json_decode($this->call('POST', $this->uri, $data)->getContent())->data;
     }
 
+    private function getEntityData() {
+        return factory($this->entity)->make()->toArray();
+    }
 }
