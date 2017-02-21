@@ -18,7 +18,7 @@ class CreateGamesTable extends Migration
             $table->integer('product_owner_id')->unsigned();
             $table->foreign('product_owner_id')->references('id')->on('users');
             $table->string('name')->unique();
-            $table->enum('cards',['standard', 'fibonacci', 't-shirt'])->default('standard');
+            $table->enum('cards', Config::get('cards.types'))->default('standard');
             $table->dateTime('start_at');
             $table->dateTime('end_at');
             $table->timestamps();

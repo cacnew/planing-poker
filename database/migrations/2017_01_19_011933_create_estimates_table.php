@@ -17,8 +17,6 @@ class CreateEstimatesTable extends Migration
             $table->increments('id');
             $table->integer('player_id')->unsigned();
             $table->foreign('player_id')->references('id')->on('users');
-            $table->integer('round_id')->unsigned();
-            $table->foreign('round_id')->references('id')->on('rounds');
             $table->char('vote');
             $table->timestamps();
 		});
