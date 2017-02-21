@@ -14,3 +14,5 @@ use Illuminate\Http\Request;
 */
 
 Route::resource('estimate', 'EstimatesController', ['except' =>['create', 'edit']]);
+Route::resource('game', 'GamesController', ['except' =>['create', 'edit']]);
+Route::resource('round', 'RoundsController', ['except' =>['create', 'edit']]);

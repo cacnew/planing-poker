@@ -15,8 +15,10 @@ class CreateEstimatesTable extends Migration
 	{
 		Schema::create('estimates', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('owner_id')->unsigned();
-            $table->foreign('owner_id')->references('id')->on('users');
+            $table->integer('player_id')->unsigned();
+            $table->foreign('player_id')->references('id')->on('users');
+            $table->integer('round_id')->unsigned();
+            $table->foreign('round_id')->references('id')->on('rounds');
             $table->char('vote');
             $table->timestamps();
 		});

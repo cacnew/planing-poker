@@ -11,7 +11,7 @@ use App\Entities\Estimate;
  */
 class EstimateTransformer extends TransformerAbstract
 {
-    protected $defaultIncludes = ['owner'];
+    protected $defaultIncludes = ['player', 'round'];
 
     /**
      * Transform the \Estimate entity
@@ -23,12 +23,19 @@ class EstimateTransformer extends TransformerAbstract
     {
         return [
             'id'         => (int) $model->id,
+            'player_id'  => (int) $model->player_id,
+            'round_id'   => (int) $model->round_id,
             'vote'       => $model->vote,
         ];
     }
 
-    public function includeOwner(Estimate $model)
+    public function includePlayer(Estimate $model)
     {
-        return $this->item($model->owner, new UserTransformer());
+        return $this->item($model->player, new UserTransformer());
+    }
+
+    public function includeRound(Estimate $model)
+    {
+        return $this->item($model->round, new RoundTransformer());
     }
 }

@@ -25,5 +25,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(\App\Services\UserService::class, \App\Services\BaseUserService::class);
         $this->app->bind(\App\Services\EstimateService::class, \App\Services\BaseEstimateService::class);
+        $this->app->bind(\App\Services\GameService::class, \App\Services\BaseGameService::class);
+        $this->app->bind(\App\Services\RoundService::class, \App\Services\BaseRoundService::class);
     }
 }

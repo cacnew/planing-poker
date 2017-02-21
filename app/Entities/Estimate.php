@@ -6,13 +6,19 @@ class Estimate extends BaseEntity
 {
 
     protected $fillable = [
-        'owner_id',
+        'player_id',
+        'round_id',
         'vote'
     ];
 
-    public function owner()
+    public function player()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function round()
+    {
+        return $this->belongsTo(Round::class);
     }
 
 }
