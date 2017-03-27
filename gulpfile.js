@@ -1,65 +1,51 @@
-var elixir = require('laravel-elixir'),
-    gulp = require('gulp');
+var elixir = require('laravel-elixir');
+
+require('laravel-elixir-vueify');
 
 var config = {
     assets_path: './resources/assets',
-    build_path: './public/build',
+    build_path: 'public/build',
 };
 
 //-------------------------- configuration paths -----------------
 
 // local dos componentes
-config.bower_dir = '/bower_components';
-config.bower_path = config.assets_path +'/..'+ config.bower_dir;
+config.node_modules_dir = '/node_modules';
+config.bower_path = config.assets_path +'/..'+ config.node_modules_dir;
 
 // libs js
 config.vendor_path_js = [
-    '/../../'+ config.bower_dir + '/jquery/dist/jquery.js',
-    '/../../'+ config.bower_dir + '/bootstrap/dist/js/bootstrap.js',
-    '/../../'+ config.bower_dir + '/vue/dist/vue.js',
+    '/../../../'+ config.node_modules_dir + '/jquery/dist/jquery.js',
+    '/../../../'+ config.node_modules_dir + '/bootstrap/dist/js/bootstrap.js',
+];
+
+config.app_path_js = [
+    'main.js',
 ];
 
 // libs css
 config.vendor_path_css = [
-    '/../../'+ config.bower_dir + '/bootstrap/dist/css/bootstrap.css',
-    '/../../'+ config.bower_dir + '/bootstrap/dist/css/bootstrap-theme.css',
+    '/../../../'+ config.node_modules_dir + '/bootstrap/dist/css/bootstrap.css',
+    '/../../../'+ config.node_modules_dir + '/bootstrap/dist/css/bootstrap-theme.css',
+    '/../../../'+ config.node_modules_dir + '/font-awesome/css/font-awesome.css',
 ];
 
 // font
 config.build_path_fonts = config.build_path +'/fonts';
 config.vendor_path_fonts = [
-    config.bower_path + '/bootstrap/fonts/*',
-    config.bower_path + '/font-awesome/fonts/*',
+    '.'+ config.node_modules_dir + '/bootstrap/fonts',
+    '.'+ config.node_modules_dir + '/font-awesome/fonts',
 ];
-
-// images
-config.build_path_images = config.build_path +'/images';
-
-
-//-------------------------- tasks -----------------
-
-
-// copiar arquivos de font
-gulp.task('copy-fonts', function(){
-    gulp.src(config.vendor_path_fonts)
-        .pipe(gulp.dest(config.build_path_fonts));
-});
-
-// copiar arquivos de image
-gulp.task('copy-images', function(){
-    gulp.src([
-        config.assets_path + '/images/**/*'
-    ])
-        .pipe(gulp.dest(config.build_path_images));
-});
 
 
 //-------------------------- elixir -----------------
 
 
 elixir(function(mix) {
-    gulp.start('copy-fonts', 'copy-images');
-    mix.scripts(config.vendor_path_js.concat(['.']))
+    mix.copy(config.vendor_path_fonts, config.build_path_fonts)
+        .scripts(config.vendor_path_js, 'public/js/vendor.js')
+        .browserify(config.app_path_js, 'public/js/app.js')
+        .scripts(['../../../public/js/vendor.js', '../../../public/js/app.js'])
         .styles(config.vendor_path_css.concat(['.']))
         .version(['js/all.js', 'css/all.css']);
 });
